@@ -1,0 +1,16 @@
+{
+  "name": "site-ultra-seguros-consorcios",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site institucional + formulário interno de cotação da Ultra Seguros e Consórcios (Ipatinga/MG)",
+  "type": "module",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node server/server.js",
+    "reprocessar": "node server/reprocessar.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED"
+}

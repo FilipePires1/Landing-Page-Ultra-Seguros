@@ -1,0 +1,32 @@
+# ---------------------------------------------------------------
+# Ultra Seguros e Consórcios — Apache (hosting compartilhado)
+# ---------------------------------------------------------------
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # HTTPS
+  RewriteCond %{HTTPS} !=on
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Rota amiga /cotacao
+  RewriteRule ^cotacao/?$ cotacao.html [L]
+
+  # Bloqueia acesso à camada de integração
+  RewriteRule ^server/ - [R=403,L]
+
+  # Arquivos que nunca devem ser públicos
+  RewriteRule (^|/)\.(env|git) - [R=403,L]
+</IfModule>
+
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript image/svg+xml
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType text/css "access plus 1 day"
+  ExpiresByType text/javascript "access plus 1 day"
+</IfModule>
